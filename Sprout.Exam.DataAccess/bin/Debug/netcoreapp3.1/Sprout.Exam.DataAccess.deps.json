@@ -15,6 +15,14 @@
           "Sprout.Exam.DataAccess.dll": {}
         }
       },
+      "FluentValidation/11.5.1": {
+        "runtime": {
+          "lib/netstandard2.1/FluentValidation.dll": {
+            "assemblyVersion": "11.0.0.0",
+            "fileVersion": "11.5.1.0"
+          }
+        }
+      },
       "Microsoft.EntityFrameworkCore/5.0.4": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Abstractions": "5.0.4",
@@ -156,6 +164,7 @@
       },
       "Sprout.Exam.Business/1.0.0": {
         "dependencies": {
+          "FluentValidation": "11.5.1",
           "Sprout.Exam.Common": "1.0.0"
         },
         "runtime": {
@@ -174,6 +183,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "FluentValidation/11.5.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-0h1Q5lNOLLyYTWMJmyNoMqhY4CBRvvUWvJP1R4F2CnmmzuWwvB0A8aVmw5+lOuwYnwUwCRrdeMLbc81F38ahNQ==",
+      "path": "fluentvalidation/11.5.1",
+      "hashPath": "fluentvalidation.11.5.1.nupkg.sha512"
     },
     "Microsoft.EntityFrameworkCore/5.0.4": {
       "type": "package",

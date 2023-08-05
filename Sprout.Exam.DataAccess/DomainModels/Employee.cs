@@ -64,6 +64,7 @@ namespace Sprout.Exam.DataAccess.DomainModels
             };
         }
 
+        //Factory Method
         public Employee ConvertToCorrectSubClass()
         {
             return (EmployeeType)EmployeeTypeId switch 

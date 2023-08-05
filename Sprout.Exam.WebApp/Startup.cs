@@ -1,3 +1,6 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
+using FluentValidationDemo.Validation;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -9,10 +12,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Sprout.Exam.Business.DataTransferObjects;
 using Sprout.Exam.WebApp.Data;
 using Sprout.Exam.WebApp.Models;
 using Sprout.Exam.WebApp.Repository;
 using Sprout.Exam.WebApp.Services;
+using System.Reflection;
 
 namespace Sprout.Exam.WebApp
 {
@@ -46,8 +51,13 @@ namespace Sprout.Exam.WebApp
             services.AddAuthentication()
                 .AddIdentityServerJwt();
 
-            services.AddControllersWithViews();
+            services.AddControllersWithViews()
+                .AddFluentValidation();
             services.AddRazorPages();
+
+            services.AddTransient<IValidator<EditEmployeeDto>, EditEmployeeDtoValidator>();
+            services.AddTransient<IValidator<CalculateDto>, CalculateDtoValidator>();
+            services.AddTransient<IValidator<CreateEmployeeDto>, CreateEmployeeDtoValidator>();
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

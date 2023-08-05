@@ -57,10 +57,14 @@ namespace Sprout.Exam.WebApp.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(EditEmployeeDto input)
+        public async Task<IActionResult> Put([FromBody]EditEmployeeDto input)
         {
             try
             {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest();
+                }
                 var item = await _employeeService.Update(input);
                 return Ok(item);
             }
@@ -75,10 +79,10 @@ namespace Sprout.Exam.WebApp.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        public async Task<IActionResult> Post(CreateEmployeeDto input)
+        public async Task<IActionResult> Post([FromBody]CreateEmployeeDto input)
         {
 
-           //var id = await Task.FromResult(StaticEmployees.ResultList.Max(m => m.Id) + 1);
+            //var id = await Task.FromResult(StaticEmployees.ResultList.Max(m => m.Id) + 1);
 
             //StaticEmployees.ResultList.Add(new EmployeeDto
             //{
@@ -88,6 +92,12 @@ namespace Sprout.Exam.WebApp.Controllers
             //    Tin = input.Tin,
             //    TypeId = input.TypeId
             //});
+
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
             var id = await _employeeService.AddAsync(input);
 
 
@@ -127,8 +137,13 @@ namespace Sprout.Exam.WebApp.Controllers
         {
             try
             {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest();
+                }
+
                 decimal amount = _employeeService.Calculate(inputDto.Id, inputDto.AbsentDays, inputDto.WorkedDays);
-                return Ok(String.Format("{0:0.00}", amount));
+                return Ok(String.Format("{0:0.00}", Math.Round(amount, 2)));
             }
             catch(NotImplementedException e)
             {
