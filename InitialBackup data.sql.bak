@@ -1,0 +1,10 @@
+USE [SproutExamDb]
+GO
+INSERT [dbo].[AspNetUsers] ([Id], [UserName], [NormalizedUserName], [Email], [NormalizedEmail], [EmailConfirmed], [PasswordHash], [SecurityStamp], [ConcurrencyStamp], [PhoneNumber], [PhoneNumberConfirmed], [TwoFactorEnabled], [LockoutEnd], [LockoutEnabled], [AccessFailedCount]) VALUES (N'7a9b6e89-3b3a-458f-aa4e-1fb45894ca00', N'jeinz.hernandez@gmail.com', N'JEINZ.HERNANDEZ@GMAIL.COM', N'jeinz.hernandez@gmail.com', N'JEINZ.HERNANDEZ@GMAIL.COM', 0, N'AQAAAAEAACcQAAAAEBpMCwcC0NSutfNr9dtGCXpkL9Ld5IeiYXjoA57MBI962BoZrkYW3TwxCw2SrAiXjQ==', N'QSA63J7D3PCJZPNDU6ZW4MNMGWE2QOD5', N'd5abc9fb-aa84-4608-b26b-c17aedc7833f', NULL, 0, 0, NULL, 1, 0)
+GO
+INSERT [dbo].[AspNetUsers] ([Id], [UserName], [NormalizedUserName], [Email], [NormalizedEmail], [EmailConfirmed], [PasswordHash], [SecurityStamp], [ConcurrencyStamp], [PhoneNumber], [PhoneNumberConfirmed], [TwoFactorEnabled], [LockoutEnd], [LockoutEnabled], [AccessFailedCount]) VALUES (N'9b8cf900-ef88-4d53-bd4e-53e60587eb15', N'sprout.test@gmail.com', N'SPROUT.TEST@GMAIL.COM', N'sprout.test@gmail.com', N'SPROUT.TEST@GMAIL.COM', 1, N'AQAAAAEAACcQAAAAELGMIZ25yNal4axsBlPfBwbYZK2vFIM3L4OaZMpj4a0yMc57952UjsvSSO3nDk5tPA==', N'KCCUR6MYBCZGLU3IRKCABWESB2HJ4ETN', N'0cf8409e-1cad-45c0-ac1d-a838e2580118', NULL, 0, 0, NULL, 1, 0)
+GO
+INSERT [dbo].[EmployeeType] ([Id], [TypeName]) VALUES (1, N'Regular')
+GO
+INSERT [dbo].[EmployeeType] ([Id], [TypeName]) VALUES (2, N'Contractual')
+GO

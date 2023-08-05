@@ -22,9 +22,7 @@ namespace Sprout.Exam.WebApp.Migrations
             modelBuilder.Entity("Sprout.Exam.DataAccess.DomainModels.Employee", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("Birthdate")
                         .HasColumnType("datetime2");
@@ -38,8 +36,14 @@ namespace Sprout.Exam.WebApp.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
+                    b.Property<decimal>("Salary")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<string>("TIN")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal?>("TaxPercentage")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 

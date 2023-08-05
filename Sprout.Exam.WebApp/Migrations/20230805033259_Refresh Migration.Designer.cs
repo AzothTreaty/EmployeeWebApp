@@ -10,8 +10,8 @@ using Sprout.Exam.WebApp.Data;
 namespace Sprout.Exam.WebApp.Migrations
 {
     [DbContext(typeof(EmployeeDbContext))]
-    [Migration("20230731151056_Initial2")]
-    partial class Initial2
+    [Migration("20230805033259_Refresh Migration")]
+    partial class RefreshMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,9 +24,7 @@ namespace Sprout.Exam.WebApp.Migrations
             modelBuilder.Entity("Sprout.Exam.DataAccess.DomainModels.Employee", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("Birthdate")
                         .HasColumnType("datetime2");
@@ -40,8 +38,14 @@ namespace Sprout.Exam.WebApp.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
+                    b.Property<decimal>("Salary")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<string>("TIN")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal?>("TaxPercentage")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 

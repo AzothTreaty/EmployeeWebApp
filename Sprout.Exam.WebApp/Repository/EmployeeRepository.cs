@@ -29,7 +29,7 @@ namespace Sprout.Exam.WebApp.Repository
 
         public List<Employee> GetEmployees()
         {
-            return _context.Employees.ToList();
+            return _context.Employees.Where(e => !e.IsDeleted).ToList();
         }
 
         public async Task SaveChangesAsync()

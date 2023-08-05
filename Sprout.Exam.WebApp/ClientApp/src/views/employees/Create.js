@@ -6,7 +6,7 @@ export class EmployeeCreate extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { fullName: '',birthdate: '',tin: '',typeId: 1, loading: false,loadingSave:false };
+    this.state = { fullName: '',birthdate: '',tin: '',typeId: 1,salaryAmount: 0.0, loading: false,loadingSave:false };
   }
 
   componentDidMount() {
@@ -37,7 +37,11 @@ export class EmployeeCreate extends Component {
 <div className='form-group col-md-6'>
   <label htmlFor='inputBirthdate4'>Birthdate: *</label>
   <input type='date' className='form-control' id='inputBirthdate4' onChange={this.handleChange.bind(this)} name="birthdate" value={this.state.birthdate} placeholder='Birthdate' />
-</div>
+                    </div>
+                    <div className='form-group col-md-6'>
+                        <label htmlFor='inputSalaryAmount4'>Salary: *</label>
+                        <input type='text' className='form-control' id='inputSalaryAmount4' onChange={this.handleChange.bind(this)} value={this.state.salaryAmount} name="salaryAmount" placeholder='0.00' />
+                    </div>
 </div>
 <div className="form-row">
 <div className='form-group col-md-6'>

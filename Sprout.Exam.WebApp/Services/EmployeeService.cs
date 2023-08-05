@@ -1,4 +1,6 @@
-﻿using Sprout.Exam.Business.DataTransferObjects;
+﻿using Humanizer;
+using Sprout.Exam.Business.DataTransferObjects;
+using Sprout.Exam.Common.Enums;
 using Sprout.Exam.DataAccess.DomainModels;
 using Sprout.Exam.WebApp.Repository;
 using System;
@@ -27,9 +29,18 @@ namespace Sprout.Exam.WebApp.Services
             var employees = _employeeRepository.GetEmployees();
             var id = employees.Any() ? employees.Max(m => m.Id) + 1 : 0;
 
-            await _employeeRepository.AddAsync(new Employee(
-                id, input.FullName, input.Birthdate,
-                input.Tin, input.TypeId, false));
+            decimal salary = decimal.Parse(input.SalaryAmount);
+
+            await _employeeRepository.AddAsync(
+                new Employee(
+                    id, 
+                    input.FullName,
+                    input.Birthdate,
+                    input.Tin, 
+                    input.TypeId, 
+                    false, 
+                    salary, 
+                    GetTaxPercentage((EmployeeType)input.TypeId, salary)));
 
             await _employeeRepository.SaveChangesAsync();
 
@@ -61,16 +72,35 @@ namespace Sprout.Exam.WebApp.Services
             return employee.ToDto();
         }
 
+        public decimal Calculate(int id, decimal absentDays, decimal workedDays)
+        {
+            var employee = GetEmployeeById(id);
+
+            var convertedEmployee = employee.ConvertToCorrectSubClass();
+
+            return ((EmployeeType)employee.EmployeeTypeId) switch
+            {
+                EmployeeType.Regular => convertedEmployee.CalculateSalary(absentDays),
+                EmployeeType.Contractual => convertedEmployee.CalculateSalary(workedDays),
+                _ => throw new NotImplementedException()
+            }; ;
+        }
+
         private Employee GetEmployeeById(int id)
         {
             var employee = _employeeRepository.GetById(id);
 
-            if (employee is null)
-            {
-                throw new KeyNotFoundException($"Employee with id {id} not found");
-            }
+            return employee ?? throw new KeyNotFoundException($"Employee with id {id} not found");
+        }
 
-            return employee;
+        private static decimal? GetTaxPercentage(EmployeeType type, decimal salary)
+        {
+            return type switch
+            {
+                EmployeeType.Regular => 0.12m,
+                EmployeeType.Contractual => null,
+                _ => throw new NotImplementedException(),
+            };
         }
     }
 }

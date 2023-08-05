@@ -12,5 +12,6 @@ namespace Sprout.Exam.WebApp.Services
         List<Employee> GetEmployees();
         Task DeleteEmployee(int id);
         Task<EmployeeDto> Update(EditEmployeeDto dto);
+        decimal Calculate(int id, decimal absentDays, decimal workedDays);
     }
 }

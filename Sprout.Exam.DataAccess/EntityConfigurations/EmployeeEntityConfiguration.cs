@@ -12,6 +12,9 @@ namespace Sprout.Exam.DataAccess.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<Employee> builder)
         {
+            builder.HasKey(e => e.Id);
+            builder.Property(e => e.Id)
+                .ValueGeneratedNever();
         }
     }
 }
