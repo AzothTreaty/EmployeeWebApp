@@ -67,7 +67,7 @@ namespace Sprout.Exam.DataAccess.DomainModels
         //Factory Method
         public Employee ConvertToCorrectSubClass()
         {
-            return (EmployeeType)EmployeeTypeId switch 
+            return (EmployeeType)EmployeeTypeId switch
             {
                 EmployeeType.Regular => new RegularEmployee(Id, FullName, Birthdate, TIN, EmployeeTypeId, IsDeleted, Salary, TaxPercentage),
                 EmployeeType.Contractual => new ContractualEmployee(Id, FullName, Birthdate, TIN, EmployeeTypeId, IsDeleted, Salary),

@@ -8,8 +8,6 @@ namespace FluentValidationDemo.Validation
         public CalculateDtoValidator()
         {
             RuleFor(c => c.Id).NotNull().NotEmpty();
-            RuleFor(c => c.WorkedDays).NotNull().NotEmpty();
-            RuleFor(c => c.AbsentDays).NotNull().NotEmpty();
         }
     }
 }
